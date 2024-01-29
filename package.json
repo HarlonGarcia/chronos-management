@@ -16,5 +16,5 @@
     "bun-types": "latest",
     "prisma": "5.8.1"
   },
-  "module": "src/index.js"
+  "module": "src/app.js"
 }
