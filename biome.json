@@ -11,6 +11,10 @@
         "useGroupedTypeImport": "warn",
         "noUnusedImports": "warn",
         "useImportRestrictions": "warn"
+      },
+      "style": {
+        "noNonNullAssertion": "off",
+        "noCommaOperator": "off"
       }
     }
   },

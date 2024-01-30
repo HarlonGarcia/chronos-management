@@ -3,14 +3,23 @@ import { cors } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
 import { usersController } from "@controllers/users.controller";
 import { tasksController } from "@controllers/tasks.controller";
+import { authController } from "@controllers/auth.controller";
+import { authMiddleware } from "@middlewares/auth.middleware";
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT!;
+
+const privateRoutes = (app: Elysia) => (
+  app.use(usersController),
+  app.use(tasksController)
+);
 
 const app = new Elysia()
   .use(cors())
   .use(swagger())
-  .use(usersController)
-  .use(tasksController)
+  .use(authController)
+  .guard({
+    beforeHandle: authMiddleware,
+  }, privateRoutes)
   .listen(PORT);
 
 console.warn(
