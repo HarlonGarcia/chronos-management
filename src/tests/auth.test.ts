@@ -19,7 +19,6 @@ describe("login", () => {
     const response = await app.handle(new Request(`${baseUrl}/login`, options));
     const json = await response.json();
 
-    console.log(json);
     expect(json).toContainKeys(["accessToken"]);
   });
 
@@ -111,8 +110,6 @@ describe("signup", () => {
     );
 
     const json = await response.json();
-
-    console.log(json);
 
     expect(json).toStrictEqual({
       statusCode: 409,
