@@ -9,7 +9,11 @@
     "@elysiajs/cors": "^0.8.0",
     "@elysiajs/swagger": "^0.8.5",
     "@prisma/client": "5.8.1",
-    "elysia": "latest"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.5",
+    "bcryptjs": "^2.4.3",
+    "elysia": "latest",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3",

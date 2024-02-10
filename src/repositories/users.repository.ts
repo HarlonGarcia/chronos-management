@@ -18,6 +18,17 @@ class UsersRepository {
     return user;
   }
 
+  async getByEmail(email: string) {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      include: {
+        tasks: true,
+      }
+    });
+
+    return user;
+  }
+
   async create(userDto: CreateUserDto) {
     const user = await prisma.user.create({
       data: userDto,
