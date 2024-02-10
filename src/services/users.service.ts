@@ -1,4 +1,5 @@
 import { CreateUserDto } from "@dtos/users";
+import { UserNotFoundError } from "@exceptions/user.exception";
 import usersRepository from "@repositories/users.repository";
 import { hash } from "bcryptjs";
 
@@ -8,8 +9,11 @@ export async function getAll() {
 }
 
 export async function create({ password, ...rest }: CreateUserDto) {
-  const encryptedPassword = await hash(password, Number(process.env.BCRYPT_SALT!));
-  
+  const encryptedPassword = await hash(
+    password,
+    Number(process.env.BCRYPT_SALT!),
+  );
+
   const user = await usersRepository.create({
     ...rest,
     password: encryptedPassword,
@@ -29,6 +33,12 @@ export async function getByEmail(email: string) {
 }
 
 export async function deleteById(id: string) {
+  const userAlreadyExists = await usersRepository.getById(id);
+
+  if (!userAlreadyExists) {
+    throw new UserNotFoundError();
+  }
+
   const user = await usersRepository.delete(id);
   return user;
 }

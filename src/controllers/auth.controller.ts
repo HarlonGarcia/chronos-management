@@ -1,28 +1,40 @@
-import { Elysia, t } from "elysia";
-import {  } from "@services/users.service";
+import { Elysia } from "elysia";
 import { authenticate, register } from "@services/auth.service";
+import { LoginDtoSchema, SignupDtoSchema } from "@dtos/auth";
+import { Exception } from "@exceptions/index";
 
 export const authController = (app: Elysia) => {
-  app.post("/login", async ({ body }) => {
-    const response = authenticate(body);
-    return response;
-  }, {
-    body: t.Object({
-      email: t.String(),
-      password: t.String(),
-    }),
-  });
+  app.post(
+    "/login",
+    async ({ body, set }) => {
+      try {
+        const response = await authenticate(body);
+        return response;
+      } catch (error) {
+        set.status = (error as Exception).statusCode;
+        return error;
+      }
+    },
+    {
+      body: LoginDtoSchema,
+    },
+  );
 
-  app.post("/signup", async ({ body }) => {
-    const response = register(body);
-    return response;
-  }, {
-    body: t.Object({
-      name: t.Optional(t.String()),
-      email: t.String(),
-      password: t.String(),
-    }),
-  });
+  app.post(
+    "/signup",
+    async ({ body, set }) => {
+      try {
+        const response = await register(body);
+        return response;
+      } catch (error) {
+        set.status = (error as Exception).statusCode;
+        return error;
+      }
+    },
+    {
+      body: SignupDtoSchema,
+    },
+  );
 
   return app;
-}
+};

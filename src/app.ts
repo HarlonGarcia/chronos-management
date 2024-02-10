@@ -9,19 +9,21 @@ import { authMiddleware } from "@middlewares/auth.middleware";
 const PORT = process.env.PORT!;
 
 const privateRoutes = (app: Elysia) => (
-  app.use(usersController),
-  app.use(tasksController)
+  app.use(usersController), app.use(tasksController)
 );
 
-const app = new Elysia()
+export const app = new Elysia()
   .use(cors())
   .use(swagger())
   .use(authController)
-  .guard({
-    beforeHandle: authMiddleware,
-  }, privateRoutes)
+  .guard(
+    {
+      beforeHandle: authMiddleware,
+    },
+    privateRoutes,
+  )
   .listen(PORT);
 
 console.warn(
-  `⏰ Chronos is running at ${app.server?.hostname}:${app.server?.port}`
+  `⏰ Chronos is running at ${app.server?.hostname}:${app.server?.port}`,
 );

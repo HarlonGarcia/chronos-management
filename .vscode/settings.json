@@ -1,0 +1,9 @@
+{
+  "git.enabled": true,
+  "files.exclude": {
+    "node_modules": true,
+    ".gitignore": true,
+    "bun.lockb": true,
+    "tsconfig.json": false
+  }
+}

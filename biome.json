@@ -15,11 +15,25 @@
       "style": {
         "noNonNullAssertion": "off",
         "noCommaOperator": "off"
+      },
+      "suspicious": {
+        "noAssignInExpressions": "off"
       }
     }
   },
   "formatter": {
     "indentWidth": 2,
     "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "indentWidth": 2,
+      "indentStyle": "space",
+      "arrowParentheses": "always",
+      "jsxQuoteStyle": "double",
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "enabled": true
+    }
   }
 }

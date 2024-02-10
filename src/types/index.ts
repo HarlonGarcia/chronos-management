@@ -1,6 +1,6 @@
-type IHeaders = Record<string, string | undefined>
+export type IHeaders = Record<string, string | undefined>;
 
-interface IJwtPayload {
+export interface IJwtPayload {
   sub: string;
   iat: number;
   exp: number;
