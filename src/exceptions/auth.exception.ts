@@ -1,4 +1,4 @@
-import { Exception } from ".";
+import { Exception } from "./custom.exception";
 
 export class AuthenticationError extends Exception {
   constructor(public message = "Authentication error") {
