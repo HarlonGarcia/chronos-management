@@ -11,8 +11,8 @@ class UsersRepository {
     const user = await prisma.user.findUnique({
       where: { id },
       include: {
-        tasks: true,
-      }
+        tasks: false,
+      },
     });
 
     return user;
@@ -22,8 +22,8 @@ class UsersRepository {
     const user = await prisma.user.findUnique({
       where: { email },
       include: {
-        tasks: true,
-      }
+        tasks: false,
+      },
     });
 
     return user;

@@ -9,7 +9,7 @@ import { authMiddleware } from "@middlewares/auth.middleware";
 const PORT = process.env.PORT!;
 
 const privateRoutes = (app: Elysia) => (
-  app.use(usersController), app.use(tasksController)
+  app.use(tasksController), app.use(usersController)
 );
 
 export const app = new Elysia()
